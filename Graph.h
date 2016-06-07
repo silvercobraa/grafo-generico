@@ -17,10 +17,9 @@ public:
 	int get_E();
 	void add_edge(const T& e, int v1, int v2);
 	// std::vector<int> get_neighbours(int v);
-	// int degree(int v);
+	int degree(int v);
 	void print();
 	T adjacentes();
-	int grado();
 };
 
 #include "Graph.cpp"

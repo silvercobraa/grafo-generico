@@ -55,19 +55,19 @@ std::vector<int> Graph<T>::get_neighbours(int v)
 	return neighbours;
 }*/
 
-/*template<class T>
+template<class T>
 int Graph<T>::degree(int v)
 {
 	int deg = 0;
 	for (int i = 0; i < V; i++)
 	{
-		if (adj[v -1][i] == 1)
+		if (adj[v][i] != NULL)
 		{
 			deg++;
 		}
 	}
 	return deg;
-}*/
+}
 
 template<class T>
 void Graph<T>::print()
@@ -88,12 +88,5 @@ T Graph<T>::adjacentes()
 {
 
 }
-
-template<class T>
-int Graph<T>::grado()
-{
-
-}
-
 
 #endif /* end of include guard: GRAPH_CPP */
