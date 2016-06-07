@@ -31,6 +31,8 @@ int Graph<T>::get_E()
 template<class T>
 void Graph<T>::add_edge(const T& e, int v1, int v2)
 {
+	_validate_index(v1);
+	_validate_index(v2);
 	// Los vértices están enumerados a partir del uno
 	// adj[v1-1][v2-1] = e;
 	// adj[v2-1][v1-1] = e;
@@ -58,15 +60,24 @@ std::vector<int> Graph<T>::get_neighbours(int v)
 template<class T>
 int Graph<T>::degree(int v)
 {
+	_validate_index(v);
 	int deg = 0;
 	for (int i = 0; i < V; i++)
 	{
-		if (adj[v][i] != NULL)
+		if (adj[v][i] != (T)NULL)
 		{
 			deg++;
 		}
 	}
 	return deg;
+}
+
+template<class T>
+T Graph<T>::get_edge(int v1, int v2)
+{
+	_validate_index(v1);
+	_validate_index(v2);
+	return adj[v1][v2];
 }
 
 template<class T>
@@ -87,6 +98,15 @@ template<class T>
 T Graph<T>::adjacentes()
 {
 
+}
+
+template<class T>
+void Graph<T>::_validate_index(int index)
+{
+	if (index < 0 || index >= V )
+	{
+		throw INDEX_OUT_OF_RANGE;
+	}
 }
 
 #endif /* end of include guard: GRAPH_CPP */

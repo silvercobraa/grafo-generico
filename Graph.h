@@ -5,6 +5,12 @@
 #include <vector>
 
 /**
+ * Valor que se lanza cuando se intenta acceder a un índice no válido en la
+ * matriz de adyacencia.
+ */
+#define INDEX_OUT_OF_RANGE -1;
+
+/**
  * Clase que representa un grafo no dirigido con cantidad de nodos fija,
  * implementado con matriz de adyacencia.
  */
@@ -27,6 +33,11 @@ private:
 	 * Matriz de adyacencia.
 	 */
 	T** adj;
+
+	/**
+	 * Lanza una excepción si index no está en el rango [0, V-1]
+	 */
+	void _validate_index(int index);
 
 public:
 
@@ -57,6 +68,13 @@ public:
 	 * Retorna la cantidad de aristas incidentes al nodo v.
 	 */
 	int degree(int v);
+
+	/**
+	 * Retorna la arista que conecta los vértices v1 y v2. Retorna valor nulo si
+	 * dichos vértices no están conectados.
+	 */
+	T get_edge(int v1, int v2);
+
 	void print();
 	T adjacentes();
 };
