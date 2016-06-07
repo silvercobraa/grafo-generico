@@ -81,6 +81,21 @@ T Graph<T>::get_edge(int v1, int v2)
 }
 
 template<class T>
+void Graph<T>::delete_edge(int v1, int v2)
+{
+	if (adj[v1][v2] == (T)NULL)
+	{
+		std::cout << "no existe la arista " << v1 << "," << v2 << std::endl;
+		throw MISSING_EDGE;
+	}
+	else
+	{
+		adj[v1][v2] = (T)NULL;
+		E--;
+	}
+}
+
+template<class T>
 void Graph<T>::print()
 {
 	for (int i = 0; i < V; i++)
@@ -105,6 +120,7 @@ void Graph<T>::_validate_index(int index)
 {
 	if (index < 0 || index >= V )
 	{
+		std::cout << "índice " << index << " fuera de rango" << std::endl;
 		throw INDEX_OUT_OF_RANGE;
 	}
 }

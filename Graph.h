@@ -11,6 +11,11 @@
 #define INDEX_OUT_OF_RANGE -1;
 
 /**
+ * Valor que se retorna cuado se intenta eliminar una arista que no existe.
+ */
+#define MISSING_EDGE -2;
+
+/**
  * Clase que representa un grafo no dirigido con cantidad de nodos fija,
  * implementado con matriz de adyacencia.
  */
@@ -30,12 +35,13 @@ private:
 	int E;
 
 	/**
-	 * Matriz de adyacencia.
+	 * Matriz de adyacencia de este grafo.
 	 */
 	T** adj;
 
 	/**
-	 * Lanza una excepción si index no está en el rango [0, V-1]
+	 * Lanza una excepción INDEX_OUT_OF_RANGE si index no está en el rango
+	 * [0, V-1]
 	 */
 	void _validate_index(int index);
 
@@ -75,7 +81,16 @@ public:
 	 */
 	T get_edge(int v1, int v2);
 
+	/**
+	 * Elimina la arista que conecta los vértices v1 y v2, si existe.
+	 */
+	void delete_edge(int v1, int v2);
+
+	/**
+	 * Imprime los elementos de la matriz.
+	 */
 	void print();
+
 	T adjacentes();
 };
 
