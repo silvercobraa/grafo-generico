@@ -5,16 +5,20 @@
 int main(int argc, char const *argv[])
 {
 	// CASO DE PRUEBA CON INTS
-	Graph<int>* g = new Graph<int>(10);
-	g->print();
-	g->add_edge(3, 6, 8);
-	g->print();
+	//Graph<int>* g = new Graph<int>(10);
+	//g->print();
+	//g->add_edge(3, 6, 8);
+	//g->print();
+	//std::cout << "grado de 6: " << g->degree(6) << std::endl;
+	//g->delete_edge(6,8);
+	//std::cout << "grado de 6: " << g->degree(6) << std::endl;
 
 	// CASO DE PRUEBA CON STRINGS
 	//Graph<std::string>* g = new Graph<std::string>(5);
 	//g->print();
 	//g->add_edge("hola", 2, 4);
 	//g->print();
+	//std::vector<int> v = g->get_neighbours(2);
 
 	// CASO DE PRUEBA CON OBJETOS DE CLASE EDGE
 	//Graph<Edge>* g = new Graph<Edge>(10);
@@ -22,13 +26,36 @@ int main(int argc, char const *argv[])
 	//Edge e(1, 3);
 	//g->add_edge(e, 4, 5);
 	//g->print();
+	//std::vector<int> v = g->get_neighbours(5);
+	//std::cout << "size v:" << v.size() << std::endl;
+	//for (unsigned int i = 0; i < v.size(); i++)
+	//{
+	//	std::cout << "v[" << i << "]: " << v[i] << std::endl;
+	//}
 
 	// CASO DE PRUEBA CON PUNTEROS A EDGE
 	//Graph<Edge*>* g = new Graph<Edge*>(10);
 	//g->print();
 	//Edge* e = new Edge(1, 3);
 	//g->add_edge(e, 4, 5);
+	//g->add_edge(e, 4, 2);
 	//g->print();
+	//std::cout << "grado de vertice 4:" << g->degree(4) << std::endl;
+	//std::cout << "grado de vertice 5:" << g->degree(5) << std::endl;
+	//std::cout << "grado de vertice 2:" << g->degree(2) << std::endl;
+
+	Graph<Edge*>* g = new Graph<Edge*>(10);
+	g->print();
+	Edge* e = new Edge(1, 3);
+	g->add_edge(e, 4, 5);
+	g->print();
+	std::vector<int> v = g->get_neighbours(5);
+	std::cout << "size v:" << v.size() << std::endl;
+	for (unsigned int i = 0; i < v.size(); i++)
+	{
+	std::cout << "v[" << i << "]: " << v[i] << std::endl;
+	}
+
 
 	// CASO DE PRUEBA CON PUNTEROS A OBJETOS DE TIPO PAIR<INT, FLOAT>
 	//Graph<std::pair<int, float>*>* g = new Graph<std::pair<int, float>*>(5);
