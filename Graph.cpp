@@ -110,9 +110,17 @@ void Graph<T>::print()
 }
 
 template<class T>
-T Graph<T>::adjacentes()
+std::vector<int> Graph<T>::get_neighbours(int v)
 {
-
+	std::vector<int> neighbours;
+	for (int i = 0; i < V; i++)
+	{
+		if (adj[v][i] != (T)NULL)
+		{
+			neighbours.push_back(i);
+		}
+	}
+	return neighbours;
 }
 
 template<class T>
