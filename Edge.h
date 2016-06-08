@@ -9,8 +9,16 @@ private:
 public:
 	Edge()
 	{
-
+		value = -1;
 	}
+	Edge(void* v)
+	{
+		if (v == NULL)
+		{
+			value = -1;
+		}
+	}
+
 	Edge (int v1, int v2)
 	{
 		value = v1 + v2;
@@ -60,4 +68,11 @@ std::ostream& operator << (std::ostream& stream, Edge* e)
 		return stream;
 	}
 }
+
+bool operator != (Edge e1, Edge e2)
+{
+	//std::cout << "Operador != sobrecargado" << std::endl;
+	return e1.get_value() != e2.get_value();
+}
+
 #endif /* end of include guard: EDGE_H */
