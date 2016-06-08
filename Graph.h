@@ -16,6 +16,10 @@
 #define MISSING_EDGE -2;
 
 /**
+ * Valor usado como NULL de tipo T.
+ */
+#define NULL_VALUE ((T)0)
+/**
  * Clase que representa un grafo no dirigido con cantidad de nodos fija,
  * implementado con matriz de adyacencia.
  */
