@@ -115,8 +115,14 @@ std::vector<int> Graph<T>::get_neighbours(int v)
 	std::vector<int> neighbours;
 	for (int i = 0; i < V; i++)
 	{
-		if (adj[v][i] != (T)NULL)
+		//T t = (T)NULL;
+		//std::cout << "t: " << t << std::endl;
+		//std::cout << "tadj[v][i]: " << adj[v][i] << std::endl;
+		//bool b = (adj[v][i] != t);
+		//std::cout << "b:" <<  b << std::endl;
+		if (adj[v][i] != NULL_VALUE)
 		{
+			//std::cout << "Insertando " << i << "..." << std::endl;
 			neighbours.push_back(i);
 		}
 	}
