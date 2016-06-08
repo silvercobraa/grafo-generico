@@ -11,13 +11,6 @@ public:
 	{
 		value = -1;
 	}
-	Edge(void* v)
-	{
-		if (v == NULL)
-		{
-			value = -1;
-		}
-	}
 
 	Edge (int v1, int v2)
 	{
@@ -28,7 +21,7 @@ public:
 	{
 		return visited;
 	}
-	int get_value()
+	int get_value() const
 	{
 		return value;
 	}
@@ -37,7 +30,7 @@ public:
 };
 
 // No funca si le coloco const a Edge&
-std::ostream& operator << (std::ostream& stream, Edge& e)
+std::ostream& operator << (std::ostream& stream, const Edge& e)
 {
 	//std::cout << "Edge&:" << std::endl;
 	//std::cout << "e.get_value(): " << e.get_value() << std::endl;
@@ -51,7 +44,7 @@ std::ostream& operator << (std::ostream& stream, Edge& e)
 	return stream << e.get_value();
 }*/
 
-std::ostream& operator << (std::ostream& stream, Edge* e)
+std::ostream& operator << (std::ostream& stream, const Edge* e)
 {
 	//std::cout << "edge*" << " ";
 	if (e != NULL)
@@ -64,7 +57,7 @@ std::ostream& operator << (std::ostream& stream, Edge* e)
 	else
 	{
 		//return stream << "NULO";
-		stream << "NULO";
+		stream << "0";
 		return stream;
 	}
 }
