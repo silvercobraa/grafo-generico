@@ -49,7 +49,7 @@ std::vector<int> BFS(Graph<T>* g, int v)
 		visited[i] = false;
 	}
 	q->push(v);
-	visited_vertices.push_back(v);
+	//visited_vertices.push_back(v); // Esta de más porque visito el vertice al sacarlo de la cola
 	while (!q->empty())
 	{
 		int pop = q->front();
