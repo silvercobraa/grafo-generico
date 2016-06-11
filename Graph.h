@@ -11,7 +11,7 @@
 #define INDEX_OUT_OF_RANGE -1;
 
 /**
- * Valor que se retorna cuado se intenta eliminar una arista que no existe.
+ * Valor que se retorna cuando se intenta eliminar una arista que no existe.
  */
 #define MISSING_EDGE -2;
 
