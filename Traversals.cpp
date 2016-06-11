@@ -49,6 +49,7 @@ std::vector<int> BFS(Graph<T>* g, int v)
 		visited[i] = false;
 	}
 	q->push(v);
+	visited_vertices.push_back(v);
 	while (!q->empty())
 	{
 		int pop = q->front();
@@ -60,12 +61,15 @@ std::vector<int> BFS(Graph<T>* g, int v)
 		q->pop();
 		visited[pop] = true;
 		neighbours = g->get_neighbours(pop);
-		for (unsigned int neighbour; neighbour < neighbours.size(); neighbour++)
+		//std::cout << "neighbours(" << pop << ").size: " << neighbours.size() << std::endl;
+		for (int neighbour : neighbours)
 		{
 			if (!visited[neighbour])
 			{
+				//std::cout << "pusheando " << neighbour << std::endl;
 				q->push(neighbour);
 			}
+			//std::cout << "no pusheando " << neighbour << std::endl;
 		}
 	}
 	std::cout << std::endl;
