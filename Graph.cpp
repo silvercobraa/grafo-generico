@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Graph.h"
+#include "Traversals.h"
 
 template<class T>
 Graph<T>::Graph(int V)
@@ -33,29 +34,10 @@ void Graph<T>::add_edge(const T& e, int v1, int v2)
 {
 	_validate_index(v1);
 	_validate_index(v2);
-	// Los vértices están enumerados a partir del uno
-	// adj[v1-1][v2-1] = e;
-	// adj[v2-1][v1-1] = e;
-
-	// Los vértices están enumerados a partir del cero
 	adj[v1][v2] = e;
 	adj[v2][v1] = e;
 	E++;
 }
-
-/*template<class T>
-std::vector<int> Graph<T>::get_neighbours(int v)
-{
-	std::vector<int> neighbours;
-	for (int i = 0; i < V; i++)
-	{
-		if (adj[v -1][i] == 1)
-		{
-			neighbours.push_back(i+1);
-		}
-	}
-	return neighbours;
-}*/
 
 template<class T>
 int Graph<T>::degree(int v)
@@ -115,14 +97,8 @@ std::vector<int> Graph<T>::get_neighbours(int v)
 	std::vector<int> neighbours;
 	for (int i = 0; i < V; i++)
 	{
-		//T t = (T)NULL;
-		//std::cout << "t: " << t << std::endl;
-		//std::cout << "tadj[v][i]: " << adj[v][i] << std::endl;
-		//bool b = (adj[v][i] != t);
-		//std::cout << "b:" <<  b << std::endl;
 		if (adj[v][i] != NULL_VALUE)
 		{
-			//std::cout << "Insertando " << i << "..." << std::endl;
 			neighbours.push_back(i);
 		}
 	}
