@@ -137,7 +137,13 @@ Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 	{
 		for (unsigned int j = 0; j < positions.size(); j++)
 		{
-			g.add_edge(this->get_edge(i,j), i, j);
+			/**
+			 * La siguiente linea no funcionaba porque estaba insertando las
+			 *  aristas correpondientes a los índices del vector, cuando
+			 * debían ser los elementos del vector asociados a esos índices
+			 */
+			// g.add_edge(this->get_edge(i,j), i, j);
+			g.add_edge(this->get_edge(positions[i], positions[j]), i, j);
 		}
 	}
 	return g;
