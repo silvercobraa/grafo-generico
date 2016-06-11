@@ -12,11 +12,19 @@
 template <class T>
 void _visit_neighbours(Graph<T>* g, int v, bool* visited);
 
+/**
+ * Aplica el algoritmo DFS al grafo g, comenzando en el vértice v. Retorna un
+ * vector con los vértices visitados.
+ */
 template <class T>
-void DFS(Graph<T>* g, int v);
+std::vector<int> DFS(Graph<T>* g, int v);
 
+/**
+ * Aplica el algoritmo BFS al grafo g, comenzando en el vértice v. Retorna un
+ * vector con los vértices visitados.
+ */
 template <class T>
-void BFS(Graph<T>* g, int v);
+std::vector<int> BFS(Graph<T>* g, int v);
 
 #include "Traversals.cpp"
 

@@ -20,10 +20,11 @@ void _visit_neighbours(Graph<T>* g, int v, bool* visited)
 
 
 template <class T>
-void DFS(Graph<T>* g, int v)
+std::vector<int> DFS(Graph<T>* g, int v)
 {
 	std::cout << "DFS vertice " << v << ":" << std::endl;
 	bool* visited = new bool[g->get_V()];
+	std::vector<int> visited_vertices;
 	for (int i = 0; i < g->get_V(); i++)
 	{
 		visited[i] = false;
@@ -31,16 +32,18 @@ void DFS(Graph<T>* g, int v)
 	_visit_neighbours(g, v, visited);
 	std::cout << std::endl;
 	delete visited;
+	return visited_vertices;
 }
 
 
 template <class T>
-void BFS(Graph<T>* g, int v)
+std::vector<int> BFS(Graph<T>* g, int v)
 {
 	std::cout << "BFS vertice " << v << ":" << std::endl;
 	bool* visited = new bool[g->get_V()];
 	std::queue<int>* q = new std::queue<int>();
 	std::vector<int> neighbours;
+	std::vector<int> visited_vertices;
 	for (int i = 0; i < g->get_V(); i++)
 	{
 		visited[i] = false;
@@ -52,6 +55,7 @@ void BFS(Graph<T>* g, int v)
 		if (!visited[pop])
 		{
 			std::cout << "visitando vértice " << pop << std::endl;
+			visited_vertices.push_back(pop);
 		}
 		q->pop();
 		visited[pop] = true;
@@ -67,6 +71,7 @@ void BFS(Graph<T>* g, int v)
 	std::cout << std::endl;
 	delete visited;
 	delete q;
+	return visited_vertices;
 }
 
 #endif /* end of include guard: TRAVERSALS_CPP */
