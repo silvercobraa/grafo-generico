@@ -107,6 +107,12 @@ public:
 	 * O(n)
 	 */
 	std::vector<int> get_neighbours(int v);
+
+	/**
+	 * Retorna una copia de este grafo. Si T es un puntero a un objeto, solo se
+	 * copiará el puntero. O(n²)
+	 */
+	Graph<T> clone();
 };
 
 #include "Graph.cpp"

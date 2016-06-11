@@ -139,4 +139,17 @@ void Graph<T>::_validate_index(int index)
 	}
 }
 
+template<class T>
+Graph<T> Graph<T>::clone()
+{
+	Graph<T> g(this->get_V());
+	for (int i = 0; i < V; i++)
+	{
+		for (int j = 0; j < V; j++)
+		{
+			g.add_edge(this->get_edge(i,j), i, j);
+		}
+	}
+	return g;
+}
 #endif /* end of include guard: GRAPH_CPP */
