@@ -1,6 +1,9 @@
 #ifndef EDGE_H
 #define EDGE_H
 
+/**
+ * Clase de prueba, para testear la clase Graph<T>
+ */
 class Edge
 {
 private:
