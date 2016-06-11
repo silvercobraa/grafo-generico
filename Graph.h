@@ -113,6 +113,13 @@ public:
 	 * copiará el puntero. O(n²)
 	 */
 	Graph<T> clone();
+
+	/**
+	 * Retorna un grafo que contiene sólo los vértices incluidos en el vector
+	 * positions y sólo las aristas que conectan dichos vértices, si existen en
+	 * el grafo original.
+	 */
+	Graph<T> subgraph(std::vector<int> positions);
 };
 
 #include "Graph.cpp"

@@ -152,4 +152,19 @@ Graph<T> Graph<T>::clone()
 	}
 	return g;
 }
+
+template<class T>
+Graph<T> Graph<T>::subgraph(std::vector<int> positions)
+{
+	Graph<T> g(positions.size());
+	for (int i : positions)
+	{
+		for (int j : positions)
+		{
+			g.add_edge(this->get_edge(i,j), i, j);
+		}
+	}
+	return g;
+}
+
 #endif /* end of include guard: GRAPH_CPP */
