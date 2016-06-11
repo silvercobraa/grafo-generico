@@ -19,6 +19,8 @@
  * Valor usado como NULL de tipo T.
  */
 #define NULL_VALUE ((T)0)
+
+
 /**
  * Clase que representa un grafo no dirigido con cantidad de nodos fija,
  * implementado con matriz de adyacencia.
@@ -123,6 +125,12 @@ public:
 	 * O(tamaño_vector²)
 	 */
 	Graph<T> subgraph(std::vector<int> positions);
+
+	/**
+	 * Retorna la componente conexa a la que pertence el vértice v.
+	 * O(me_fui_a_la_mierda)
+	 */
+	Graph<T> get_connected_component(int v);
 };
 
 #include "Graph.cpp"
