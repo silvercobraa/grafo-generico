@@ -110,14 +110,17 @@ public:
 
 	/**
 	 * Retorna una copia de este grafo. Si T es un puntero a un objeto, solo se
-	 * copiará el puntero. O(n²)
+	 * copiará el puntero.
+	 * O(n²)
 	 */
 	Graph<T> clone();
 
 	/**
 	 * Retorna un grafo que contiene sólo los vértices incluidos en el vector
 	 * positions y sólo las aristas que conectan dichos vértices, si existen en
-	 * el grafo original.
+	 * el grafo original. Las aristas de este subgrafo son copias de las
+	 * aristas originales.
+	 * O(tamaño_vector²)
 	 */
 	Graph<T> subgraph(std::vector<int> positions);
 };
