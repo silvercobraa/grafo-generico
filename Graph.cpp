@@ -157,9 +157,9 @@ template<class T>
 Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 {
 	Graph<T> g(positions.size());
-	for (int i : positions)
+	for (unsigned int i = 0; i < positions.size(); i++)
 	{
-		for (int j : positions)
+		for (unsigned int j = 0; j < positions.size(); j++)
 		{
 			g.add_edge(this->get_edge(i,j), i, j);
 		}
