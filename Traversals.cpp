@@ -4,16 +4,20 @@
 #include "Traversals.h"
 
 template <class T>
-void _visit_neighbours(Graph<T>* g, int v, bool* visited)
+void _visit_neighbours(Graph<T>* g, int v, bool* visited, std::vector<int>* visited_vertices)
 {
+	if (!visited[v])
+	{
+		visited_vertices->push_back(v);
+	}
 	visited[v] = true;
 	std::cout << "visitando vértice " <<  v << std::endl;
 	std::vector<int> neighbours = g->get_neighbours(v);
-	for (unsigned int neighbour = 0;  neighbour < neighbours.size(); neighbour++)
+	for (int neighbour : neighbours)
 	{
 		if (!visited[neighbour])
 		{
-			_visit_neighbours(g, neighbour, visited);
+			_visit_neighbours(g, neighbour, visited, visited_vertices);
 		}
 	}
 }
@@ -29,7 +33,7 @@ std::vector<int> DFS(Graph<T>* g, int v)
 	{
 		visited[i] = false;
 	}
-	_visit_neighbours(g, v, visited);
+	_visit_neighbours(g, v, visited, &visited_vertices);
 	std::cout << std::endl;
 	delete visited;
 	return visited_vertices;
@@ -61,15 +65,12 @@ std::vector<int> BFS(Graph<T>* g, int v)
 		q->pop();
 		visited[pop] = true;
 		neighbours = g->get_neighbours(pop);
-		//std::cout << "neighbours(" << pop << ").size: " << neighbours.size() << std::endl;
 		for (int neighbour : neighbours)
 		{
 			if (!visited[neighbour])
 			{
-				//std::cout << "pusheando " << neighbour << std::endl;
 				q->push(neighbour);
 			}
-			//std::cout << "no pusheando " << neighbour << std::endl;
 		}
 	}
 	std::cout << std::endl;

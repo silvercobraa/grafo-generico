@@ -10,7 +10,7 @@
  * Es llamada por la función DFS y no debe ser llamada en otra parte.
  */
 template <class T>
-void _visit_neighbours(Graph<T>* g, int v, bool* visited);
+void _visit_neighbours(Graph<T>* g, int v, bool* visited, std::vector<int>* visited_vertices);
 
 /**
  * Aplica el algoritmo DFS al grafo g, comenzando en el vértice v. Retorna un
