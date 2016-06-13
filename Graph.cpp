@@ -152,7 +152,7 @@ Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 template<class T>
  Graph<T> Graph<T>::get_connected_component(int v)
 {
-	// return subgraph(BFS(v));
+	//return subgraph(DFS(this, v));
 	return subgraph(BFS(this, v));
 }
 #endif /* end of include guard: GRAPH_CPP */
