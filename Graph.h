@@ -131,6 +131,17 @@ public:
 	 * O(me_fui_a_la_mierda)
 	 */
 	Graph<T> get_connected_component(int v);
+
+	/**
+	 * Encuentra todas las aristas de este grafo que son puentes.
+	 */
+	void find_bridges();
+
+	/*
+	 * Funcion dfs auxiliar
+	 */
+	//void _dfs(int v, int P, int* t, int* visited, int* low);
+	void _dfs_2(int v, int P, int* t, int* visited, int* low);
 };
 
 #include "Graph.cpp"
