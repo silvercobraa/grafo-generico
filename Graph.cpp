@@ -72,7 +72,6 @@ T Graph<T>::get_edge(int v1, int v2)
 template<class T>
 void Graph<T>::delete_edge(int v1, int v2)
 {
-	//if (adj[v1][v2] == (T)NULL)
 	if (adj[v1][v2] == NULL_VALUE || adj[v2][v1] == NULL_VALUE)
 	{
 		std::cout << "no existe la arista " << v1 << "," << v2 << std::endl;
@@ -84,6 +83,27 @@ void Graph<T>::delete_edge(int v1, int v2)
 		adj[v1][v2] = NULL_VALUE;
 		adj[v2][v1] = NULL_VALUE;
 		E--;
+	}
+}
+
+
+template<class T>
+void Graph<T>::replace_edge(T new_edge, int v1, int v2)
+{
+	if (adj[v1][v2] == NULL_VALUE || adj[v2][v1] == NULL_VALUE)
+	{
+		std::cout << "no existe la arista " << v1 << "," << v2 << std::endl;
+		throw MISSING_EDGE;
+	}
+	else if (new_edge == NULL_VALUE)
+	{
+		std::cout << "La arista no debe ser nula" << std::endl;
+		throw -3; // TODO: buscar una manera más elegante de lanzar excepciones
+	}
+	else
+	{
+		adj[v1][v2] = new_edge;
+		adj[v2][v1] = new_edge;
 	}
 }
 
@@ -190,8 +210,6 @@ std::vector<std::pair<int, int>> Graph<T>::find_bridges()
 		visited[i] = 0;
 		low[i] = 0;
 	}
-
-	//_dfs(0, 0, &t, &visited[0], &low[0]);
 	_dfs_2(0, 0, &t, &visited[0], &low[0], &bridges);
 	return bridges;
 }
@@ -212,7 +230,6 @@ void Graph<T>::_dfs_2(int v, int parent, int* id, int* pre, int* l, std::vector<
 			_dfs_2(w,v, id, pre, l, bridges);
 
 			// the lowest label for vertex v equals with the minimum label of it's children
-			//l[v] = min(l[v], l[w]);
 			l[v] = l[v] < l[w] ? l[v] : l[w];
 
 			if (l[w] == pre[w]) //for w our statement is true, so we found a bridge
@@ -223,7 +240,6 @@ void Graph<T>::_dfs_2(int v, int parent, int* id, int* pre, int* l, std::vector<
 		}
 		else if (w != parent)   // we check all reachable vertices, doesn't matter, that we explored them before or not
 		{
-			//l[v] = min(l[v], l[w]);
 			l[v] = l[v] < l[w] ? l[v] : l[w];
 		}
 	}

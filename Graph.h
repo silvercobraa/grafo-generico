@@ -12,7 +12,7 @@
 #define INDEX_OUT_OF_RANGE -1;
 
 /**
- * Valor que se retorna cuando se intenta eliminar una arista que no existe.
+ * Valor que se retorna cuando se intenta acceder a una arista que no existe.
  */
 #define MISSING_EDGE -2;
 
@@ -98,6 +98,12 @@ public:
 	 * O(1)
 	 */
 	void delete_edge(int v1, int v2);
+
+	/**
+	 * Reemplaza la arista que conecta los vértices v1 y v2, si existe.
+	 * O(1)
+	 */
+	void replace_edge(T new_edge, int v1, int v2);
 
 	/**
 	 * Imprime los elementos de la matriz.
