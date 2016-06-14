@@ -15,7 +15,7 @@ public:
 		value = -1;
 	}
 
-	Edge (int v1, int v2)
+	Edge(int v1, int v2)
 	{
 		value = v1 + v2;
 		std::cout << "value: " << value << std::endl;

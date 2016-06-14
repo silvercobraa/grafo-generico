@@ -121,7 +121,7 @@ std::vector<int> Graph<T>::get_neighbours(int v)
 template<class T>
 void Graph<T>::_validate_index(int index)
 {
-	if (index < 0 || index >= V )
+	if (index < 0 || index >= V)
 	{
 		std::cout << "índice " << index << " fuera de rango" << std::endl;
 		throw INDEX_OUT_OF_RANGE;
@@ -164,7 +164,7 @@ Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 }
 
 template<class T>
- Graph<T> Graph<T>::get_connected_component(int v)
+Graph<T> Graph<T>::get_connected_component(int v)
 {
 	//return subgraph(DFS(this, v));
 	return subgraph(BFS(this, v));
@@ -185,7 +185,8 @@ std::vector<std::pair<int, int>> Graph<T>::find_bridges()
 	int t = 1;
 	std::vector<std::pair<int, int>> bridges;
 
-	for (int i = 0; i < get_V(); i++) {
+	for (int i = 0; i < get_V(); i++)
+	{
 		visited[i] = 0;
 		low[i] = 0;
 	}
@@ -195,60 +196,33 @@ std::vector<std::pair<int, int>> Graph<T>::find_bridges()
 	return bridges;
 }
 
-// https://www.youtube.com/watch?v=zxa4ZXnbMVw
-//template<class T>
-//void Graph<T>::_dfs(int v, int P, int* t, int* visited, int* low)
-//{
-//	visited[v] = *t;
-//	low[v] = *t;
-//	*t = (*t) + 1;
-//	std::cout << "DFS vertice " << v << ":" << std::endl;
-//	std::vector<int> neighbours = get_neighbours(v);
-//	for (unsigned int i = 0; i < neighbours.size(); i++)
-//	{
-//		int u = neighbours[i];
-//		if (u == P)
-//		{
-//			continue;
-//		}
-//		if (visited[u] == -1)
-//		{
-//			_dfs(u, v, t, visited, low);
-//			if (low[u] > visited[v])
-//			{
-//				std::cout << "Puente!" << std::endl;
-//				std::cout << u << " " << v << std::endl;
-//				low[v] = low[v] < low[u] ? low[v] : low[u];
-//			}
-//			else
-//			{
-//				low[v] = low[v] < visited[u] ? low[v] : visited[u];
-//			}
-//		}
-//	}
-//	return;
-//}
 
 // http://csengerg.github.io/2015/12/26/pre-order-travelsal-and-tarjans-algorithm.html
 template<class T>
-void Graph<T>::_dfs_2(int v, int parent, int* id, int* pre, int* l, std::vector<std::pair<int, int>>* bridges){
+void Graph<T>::_dfs_2(int v, int parent, int* id, int* pre, int* l, std::vector<std::pair<int, int>>* bridges)
+{
 	pre[v] = (*id)++;
 	l[v] = pre[v];// in the beginning this is the lowest label what we reach from here
 	std::vector<int> vec = get_neighbours(v);
-	for(unsigned int i = 0; i < vec.size(); ++i){
+	for (unsigned int i = 0; i < vec.size(); ++i)
+	{
 		int w = vec[i];
-		if(pre[w] == 0){
+		if (pre[w] == 0)
+		{
 			_dfs_2(w,v, id, pre, l, bridges);
 
 			// the lowest label for vertex v equals with the minimum label of it's children
 			//l[v] = min(l[v], l[w]);
 			l[v] = l[v] < l[w] ? l[v] : l[w];
 
-			if(l[w] == pre[w]){//for w our statement is true, so we found a bridge
+			if (l[w] == pre[w]) //for w our statement is true, so we found a bridge
+			{
 				std::cout << "Edge " << v << " " << w << " is bridge!" << std::endl;
 				bridges->push_back(std::pair<int,int>(v, w));
 			}
-		} else if(w != parent){ // we check all reachable vertices, doesn't matter, that we explored them before or not
+		}
+		else if (w != parent)   // we check all reachable vertices, doesn't matter, that we explored them before or not
+		{
 			//l[v] = min(l[v], l[w]);
 			l[v] = l[v] < l[w] ? l[v] : l[w];
 		}

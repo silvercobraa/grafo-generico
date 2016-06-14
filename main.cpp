@@ -7,49 +7,49 @@ typedef int tipo;
 
 int main(int argc, char const* argv[])
 {
-    int matrix_size = 0;
-    int edges = 0;
-    int i = 0;
-    int j = 0;
+	int matrix_size = 0;
+	int edges = 0;
+	int i = 0;
+	int j = 0;
 	std::complex<float> admitance;
 
-    std::cin >> matrix_size;
-    std::cin >> edges;
+	std::cin >> matrix_size;
+	std::cin >> edges;
 
 	std::complex<float> admitance_matrix[matrix_size][matrix_size];
-    Graph<tipo> original_graph(matrix_size);
-    original_graph.print();
+	Graph<tipo> original_graph(matrix_size);
+	original_graph.print();
 
-    for (int k = 0; k < edges; k++)
-    {
-        std::cin >> i;
-        std::cin >> j;
+	for (int k = 0; k < edges; k++)
+	{
+		std::cin >> i;
+		std::cin >> j;
 		std::cin >> admitance;
-        original_graph.add_edge(1, i, j);
-        std::cout << "Insertando arista " << i << " " << j << "..." << std::endl;
+		original_graph.add_edge(1, i, j);
+		std::cout << "Insertando arista " << i << " " << j << "..." << std::endl;
 		admitance_matrix[i][j] = admitance;
 		admitance_matrix[j][i] = admitance;
 		std::cout << admitance << std::endl;
-    }
-    original_graph.print();
-    // Se obtienen todas las aristas que son puentes
-    std::vector<std::pair<int,int>> brigde_edges = original_graph.find_bridges();
-    // Si no hay puentes, todo el análisis que sigue después no tendría sentido.
-    // Por lo tanto, el programa termina
-    if (brigde_edges.size() == 0)
-    {
-        exit(EXIT_SUCCESS);
-    }
-    // Si hay puentes en el grafo, sólo se usará el primero
-    std::pair<int,int> first_edge = brigde_edges[0];
-    // Se elimina el puente del grafo
-    original_graph.delete_edge(first_edge.first, first_edge.second);
-    // Se genera el subgrafo que contiene a uno de los vértices que forma la arista puente
-    //Graph<tipo> subgraph_1 = original_graph.get_connected_component(first_edge.first);
-    //subgraph_1.print();
-    // Se genera el subgrafo que contiene al otro vértice que forma la arista puente
-    //Graph<tipo> subgraph_2 = original_graph.get_connected_component(first_edge.second);
-    //subgraph_2.print();
+	}
+	original_graph.print();
+	// Se obtienen todas las aristas que son puentes
+	std::vector<std::pair<int,int>> brigde_edges = original_graph.find_bridges();
+	// Si no hay puentes, todo el análisis que sigue después no tendría sentido.
+	// Por lo tanto, el programa termina
+	if (brigde_edges.size() == 0)
+	{
+		exit(EXIT_SUCCESS);
+	}
+	// Si hay puentes en el grafo, sólo se usará el primero
+	std::pair<int,int> first_edge = brigde_edges[0];
+	// Se elimina el puente del grafo
+	original_graph.delete_edge(first_edge.first, first_edge.second);
+	// Se genera el subgrafo que contiene a uno de los vértices que forma la arista puente
+	//Graph<tipo> subgraph_1 = original_graph.get_connected_component(first_edge.first);
+	//subgraph_1.print();
+	// Se genera el subgrafo que contiene al otro vértice que forma la arista puente
+	//Graph<tipo> subgraph_2 = original_graph.get_connected_component(first_edge.second);
+	//subgraph_2.print();
 	// obtengo todos los vértices del subrafo 1
 	std::vector<int> v1 = DFS(&original_graph, first_edge.first);
 	for (unsigned int i = 0; i < v1.size(); i++)
@@ -131,5 +131,5 @@ int main(int argc, char const* argv[])
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
-    return 0;
+	return 0;
 }
