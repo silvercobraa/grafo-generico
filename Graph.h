@@ -139,6 +139,11 @@ public:
 	 */
 	std::vector<std::pair<int, int>> find_bridges();
 
+	/**
+	 * Retorna la matriz de adjacencia asociada a este grafo.
+	 */
+	T** get_adjacency_matrix();
+
 	/*
 	 * Funcion dfs auxiliar
 	 */

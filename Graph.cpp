@@ -17,17 +17,21 @@ Graph<T>::Graph(int V)
 		adj[i] = new T[V];
 	}
 }
+
+
 template<class T>
 int Graph<T>::get_V()
 {
 	return V;
 }
 
+
 template<class T>
 int Graph<T>::get_E()
 {
 	return E;
 }
+
 
 template<class T>
 void Graph<T>::add_edge(const T& e, int v1, int v2)
@@ -38,6 +42,7 @@ void Graph<T>::add_edge(const T& e, int v1, int v2)
 	adj[v2][v1] = e;
 	E++;
 }
+
 
 template<class T>
 int Graph<T>::degree(int v)
@@ -54,6 +59,7 @@ int Graph<T>::degree(int v)
 	return deg;
 }
 
+
 template<class T>
 T Graph<T>::get_edge(int v1, int v2)
 {
@@ -61,6 +67,7 @@ T Graph<T>::get_edge(int v1, int v2)
 	_validate_index(v2);
 	return adj[v1][v2];
 }
+
 
 template<class T>
 void Graph<T>::delete_edge(int v1, int v2)
@@ -80,6 +87,7 @@ void Graph<T>::delete_edge(int v1, int v2)
 	}
 }
 
+
 template<class T>
 void Graph<T>::print()
 {
@@ -93,6 +101,7 @@ void Graph<T>::print()
 	}
 	std::cout << std::endl;
 }
+
 
 template<class T>
 std::vector<int> Graph<T>::get_neighbours(int v)
@@ -108,6 +117,7 @@ std::vector<int> Graph<T>::get_neighbours(int v)
 	return neighbours;
 }
 
+
 template<class T>
 void Graph<T>::_validate_index(int index)
 {
@@ -117,6 +127,7 @@ void Graph<T>::_validate_index(int index)
 		throw INDEX_OUT_OF_RANGE;
 	}
 }
+
 
 template<class T>
 Graph<T> Graph<T>::clone()
@@ -131,6 +142,7 @@ Graph<T> Graph<T>::clone()
 	}
 	return g;
 }
+
 
 template<class T>
 Graph<T> Graph<T>::subgraph(std::vector<int> positions)
@@ -152,12 +164,21 @@ Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 	return g;
 }
 
+
 template<class T>
  Graph<T> Graph<T>::get_connected_component(int v)
 {
 	//return subgraph(DFS(this, v));
 	return subgraph(BFS(this, v));
 }
+
+
+template<class T>
+T** Graph<T>::get_adjacency_matrix()
+{
+	return adj;
+}
+
 
 template<class T>
 std::vector<std::pair<int, int>> Graph<T>::find_bridges()
@@ -236,5 +257,6 @@ void Graph<T>::_dfs_2(int v, int parent, int* id, int* pre, int* l, std::vector<
 		}
 	}
 }
+
 
 #endif /* end of include guard: GRAPH_CPP */
