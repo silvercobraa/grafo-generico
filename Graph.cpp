@@ -65,14 +65,17 @@ T Graph<T>::get_edge(int v1, int v2)
 template<class T>
 void Graph<T>::delete_edge(int v1, int v2)
 {
-	if (adj[v1][v2] == (T)NULL)
+	//if (adj[v1][v2] == (T)NULL)
+	if (adj[v1][v2] == NULL_VALUE || adj[v2][v1] == NULL_VALUE)
 	{
 		std::cout << "no existe la arista " << v1 << "," << v2 << std::endl;
 		throw MISSING_EDGE;
 	}
 	else
 	{
-		adj[v1][v2] = (T)NULL;
+		//adj[v1][v2] = (T)NULL;
+		adj[v1][v2] = NULL_VALUE;
+		adj[v2][v1] = NULL_VALUE;
 		E--;
 	}
 }
