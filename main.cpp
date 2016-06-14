@@ -12,7 +12,6 @@ int main(int argc, char const* argv[])
     int i = 0;
     int j = 0;
 	std::complex<float> admitance;
-	std::complex<float> MENOS_UNO = -1.0 + 0.0i;
 
     std::cin >> matrix_size;
     std::cin >> edges;
@@ -74,7 +73,7 @@ int main(int argc, char const* argv[])
 		for (unsigned int j = 0; j < v1.size(); j++)
 		{
 
-			submatrix_1[i][j] = MENOS_UNO*admitance_matrix[v1[i]][v1[j]];
+			submatrix_1[i][j] = -admitance_matrix[v1[i]][v1[j]];
 			std::cout << submatrix_1[i][j] << " ";
 		}
 		std::cout << std::endl;
@@ -85,7 +84,7 @@ int main(int argc, char const* argv[])
 	{
 		for (unsigned int j = 0; j < v2.size(); j++)
 		{
-			submatrix_2[i][j] = MENOS_UNO*admitance_matrix[v2[i]][v2[j]];
+			submatrix_2[i][j] = -admitance_matrix[v2[i]][v2[j]];
 			std::cout << submatrix_2[i][j] << " ";
 		}
 		std::cout << std::endl;
