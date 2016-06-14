@@ -143,7 +143,6 @@ Graph<T> Graph<T>::clone()
 	return g;
 }
 
-
 template<class T>
 Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 {
@@ -164,14 +163,12 @@ Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 	return g;
 }
 
-
 template<class T>
  Graph<T> Graph<T>::get_connected_component(int v)
 {
 	//return subgraph(DFS(this, v));
 	return subgraph(BFS(this, v));
 }
-
 
 template<class T>
 T** Graph<T>::get_adjacency_matrix()
@@ -240,23 +237,22 @@ void Graph<T>::_dfs_2(int v, int parent, int* id, int* pre, int* l, std::vector<
 	std::vector<int> vec = get_neighbours(v);
 	for(unsigned int i = 0; i < vec.size(); ++i){
 		int w = vec[i];
-		if( pre[w] == 0 ){
+		if(pre[w] == 0){
 			_dfs_2(w,v, id, pre, l, bridges);
 
 			// the lowest label for vertex v equals with the minimum label of it's children
 			//l[v] = min(l[v], l[w]);
 			l[v] = l[v] < l[w] ? l[v] : l[w];
 
-			if( l[w] == pre[w] ){//for w our statement is true, so we found a bridge
+			if(l[w] == pre[w]){//for w our statement is true, so we found a bridge
 				std::cout << "Edge " << v << " " << w << " is bridge!" << std::endl;
 				bridges->push_back(std::pair<int,int>(v, w));
 			}
-		} else if( w != parent ){ // we check all reachable vertices, doesn't matter, that we explored them before or not
+		} else if(w != parent){ // we check all reachable vertices, doesn't matter, that we explored them before or not
 			//l[v] = min(l[v], l[w]);
 			l[v] = l[v] < l[w] ? l[v] : l[w];
 		}
 	}
 }
-
 
 #endif /* end of include guard: GRAPH_CPP */
