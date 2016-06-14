@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <tuple>
 
 /**
  * Valor que se lanza cuando se intenta acceder a un índice no válido en la
@@ -133,15 +134,16 @@ public:
 	Graph<T> get_connected_component(int v);
 
 	/**
-	 * Encuentra todas las aristas de este grafo que son puentes.
+	 * Encuentra todas las aristas de este grafo que son puentes. Retorna un
+	 * vector de pares de vértices.
 	 */
-	void find_bridges();
+	std::vector<std::pair<int, int>> find_bridges();
 
 	/*
 	 * Funcion dfs auxiliar
 	 */
 	//void _dfs(int v, int P, int* t, int* visited, int* low);
-	void _dfs_2(int v, int P, int* t, int* visited, int* low);
+	void _dfs_2(int v, int P, int* t, int* visited, int* low, std::vector<std::pair<int, int>>* briges);
 };
 
 #include "Graph.cpp"
