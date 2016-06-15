@@ -3,7 +3,7 @@
 #include "Graph.h"
 #include "Edge.h"
 
-typedef std::complex<float> tipo_t;
+typedef std::complex<float> type_t;
 
 int main(int argc, char const* argv[])
 {
@@ -11,12 +11,12 @@ int main(int argc, char const* argv[])
 	int edges = 0;
 	int i = 0;
 	int j = 0;
-	tipo_t admitance;
+	type_t admitance;
 
 	std::cin >> matrix_size;
 	std::cin >> edges;
 
-	Graph<tipo_t> original_graph(matrix_size);
+	Graph<type_t> original_graph(matrix_size);
 	original_graph.print();
 
 	for (int k = 0; k < edges; k++)
@@ -45,10 +45,10 @@ int main(int argc, char const* argv[])
 	original_graph.delete_edge(first_edge.first, first_edge.second);
 	original_graph.print();
 	// Se genera el subgrafo que contiene a uno de los vértices que forma la arista puente
-	Graph<tipo_t> subgraph_1 = original_graph.get_connected_component(first_edge.first);
+	Graph<type_t> subgraph_1 = original_graph.get_connected_component(first_edge.first);
 	subgraph_1.print();
 	// Se genera el subgrafo que contiene al otro vértice que forma la arista puente
-	Graph<tipo_t> subgraph_2 = original_graph.get_connected_component(first_edge.second);
+	Graph<type_t> subgraph_2 = original_graph.get_connected_component(first_edge.second);
 	subgraph_2.print();
 
 	std::complex<float> suma;
