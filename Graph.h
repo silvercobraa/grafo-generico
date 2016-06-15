@@ -52,6 +52,12 @@ private:
 	 */
 	void _validate_index(int index);
 
+	/*
+	 * Funcion dfs auxiliar
+	 */
+	//void _dfs(int v, int P, int* t, int* visited, int* low);
+	void _dfs_2(int v, int P, int* t, int* visited, int* low, std::vector<std::pair<int, int>>* briges);
+
 public:
 
 	/**
@@ -147,14 +153,10 @@ public:
 
 	/**
 	 * Retorna la matriz de adjacencia asociada a este grafo.
+	 * O(1)
 	 */
 	T** get_adjacency_matrix();
 
-	/*
-	 * Funcion dfs auxiliar
-	 */
-	//void _dfs(int v, int P, int* t, int* visited, int* low);
-	void _dfs_2(int v, int P, int* t, int* visited, int* low, std::vector<std::pair<int, int>>* briges);
 };
 
 #include "Graph.cpp"
