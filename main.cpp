@@ -3,7 +3,7 @@
 #include "Graph.h"
 #include "Edge.h"
 
-typedef int tipo;
+typedef std::complex<float> tipo_t;
 
 int main(int argc, char const* argv[])
 {
@@ -11,13 +11,12 @@ int main(int argc, char const* argv[])
 	int edges = 0;
 	int i = 0;
 	int j = 0;
-	std::complex<float> admitance;
+	tipo_t admitance;
 
 	std::cin >> matrix_size;
 	std::cin >> edges;
 
-	std::complex<float> admitance_matrix[matrix_size][matrix_size];
-	Graph<tipo> original_graph(matrix_size);
+	Graph<tipo_t> original_graph(matrix_size);
 	original_graph.print();
 
 	for (int k = 0; k < edges; k++)
@@ -25,10 +24,10 @@ int main(int argc, char const* argv[])
 		std::cin >> i;
 		std::cin >> j;
 		std::cin >> admitance;
-		original_graph.add_edge(1, i, j);
+		original_graph.add_edge(-admitance, i, j); // Se guardan con signo opuesto
+		// DESCOMENTAR LA SIGUIENTE LINEA PARA DEBUGUEO FACIL
+		// original_graph.add_edge(-std::complex<float>(i,j), i, j);
 		std::cout << "Insertando arista " << i << " " << j << "..." << std::endl;
-		admitance_matrix[i][j] = admitance;
-		admitance_matrix[j][i] = admitance;
 		std::cout << admitance << std::endl;
 	}
 	original_graph.print();
@@ -44,92 +43,45 @@ int main(int argc, char const* argv[])
 	std::pair<int,int> first_edge = brigde_edges[0];
 	// Se elimina el puente del grafo
 	original_graph.delete_edge(first_edge.first, first_edge.second);
+	original_graph.print();
 	// Se genera el subgrafo que contiene a uno de los vértices que forma la arista puente
-	//Graph<tipo> subgraph_1 = original_graph.get_connected_component(first_edge.first);
-	//subgraph_1.print();
+	Graph<tipo_t> subgraph_1 = original_graph.get_connected_component(first_edge.first);
+	subgraph_1.print();
 	// Se genera el subgrafo que contiene al otro vértice que forma la arista puente
-	//Graph<tipo> subgraph_2 = original_graph.get_connected_component(first_edge.second);
-	//subgraph_2.print();
-	// obtengo todos los vértices del subrafo 1
-	std::vector<int> v1 = DFS(&original_graph, first_edge.first);
-	for (unsigned int i = 0; i < v1.size(); i++)
-	{
-		std::cout << v1[i] << std::endl;
-	}
-	std::cout << std::endl;
-	// obtengo todos los vértices del subrafo 2
-	std::vector<int> v2 = DFS(&original_graph, first_edge.second);
-	for (unsigned int i = 0; i < v2.size(); i++)
-	{
-		std::cout << v2[i] << std::endl;
-	}
-	std::cout << std::endl;
+	Graph<tipo_t> subgraph_2 = original_graph.get_connected_component(first_edge.second);
+	subgraph_2.print();
 
-	std::complex<float> submatrix_1[v1.size()][v1.size()];
-	std::complex<float> submatrix_2[v2.size()][v2.size()];
-	// Llena las admitancias de la submatriz 1 e imprime
-	for (unsigned int i = 0; i < v1.size(); i++)
-	{
-		for (unsigned int j = 0; j < v1.size(); j++)
-		{
-
-			submatrix_1[i][j] = -admitance_matrix[v1[i]][v1[j]];
-			std::cout << submatrix_1[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
-	// Llena las admitancias de la submatriz 2 e imprime
-	for (unsigned int i = 0; i < v2.size(); i++)
-	{
-		for (unsigned int j = 0; j < v2.size(); j++)
-		{
-			submatrix_2[i][j] = -admitance_matrix[v2[i]][v2[j]];
-			std::cout << submatrix_2[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
 	std::complex<float> suma;
 	// Llena las admitancias de la diagonal de la submatriz 1
-	for (unsigned int i = 0; i < v1.size(); i++)
+	for (int i = 0; i < subgraph_1.get_V(); i++)
 	{
 		suma = 0.0 + 0.0i;
-		for (unsigned int j = 0; j < v1.size(); j++)
+		std::vector<int> neighbours = subgraph_1.get_neighbours(i);
+		for (unsigned int j = 0; j < neighbours.size(); j++)
 		{
-			suma += admitance_matrix[v1[i]][v1[j]];
+			suma += subgraph_1.get_edge(i, neighbours[j]);
 		}
-		submatrix_1[i][i] = suma;
+		if (neighbours.size() > 0)
+		{
+			subgraph_1.add_edge(-suma, i, i); // La diagonal debe llevar signo opuesto
+		}
 	}
-	// Llena las admitancias de la diagonal de la submatriz 2
-	for (unsigned int i = 0; i < v2.size(); i++)
+	// Llena las admitancias de la diagonal de la submatriz 1
+	for (int i = 0; i < subgraph_2.get_V(); i++)
 	{
 		suma = 0.0 + 0.0i;
-		for (unsigned int j = 0; j < v2.size(); j++)
+		std::vector<int> neighbours = subgraph_2.get_neighbours(i);
+		for (unsigned int j = 0; j < neighbours.size(); j++)
 		{
-			suma += admitance_matrix[v2[i]][v2[j]];
+			suma += subgraph_2.get_edge(i, neighbours[j]);
 		}
-		submatrix_2[i][i] = suma;
-	}
-	// Imprime la submatriz 1
-	for (unsigned int i = 0; i < v1.size(); i++)
-	{
-		for (unsigned int j = 0; j < v1.size(); j++)
+		if (neighbours.size() > 0)
 		{
-			std::cout << submatrix_1[i][j] << " ";
+			subgraph_2.add_edge(-suma, i, i); // La diagonal debe llevar signo opuesto
 		}
-		std::cout << std::endl;
 	}
-	std::cout << std::endl;
-	// Imprime la submatriz 2
-	for (unsigned int i = 0; i < v2.size(); i++)
-	{
-		for (unsigned int j = 0; j < v2.size(); j++)
-		{
-			std::cout << submatrix_2[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
+
+	subgraph_1.print();
+	subgraph_2.print();
 	return 0;
 }
