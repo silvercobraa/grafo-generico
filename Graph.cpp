@@ -6,7 +6,7 @@
 #include "Graph.h"
 #include "Traversals.h"
 
-template<class T>
+template<typename T>
 Graph<T>::Graph(int V)
 {
 	this->V = V;
@@ -19,21 +19,21 @@ Graph<T>::Graph(int V)
 }
 
 
-template<class T>
+template<typename T>
 int Graph<T>::get_V()
 {
 	return V;
 }
 
 
-template<class T>
+template<typename T>
 int Graph<T>::get_E()
 {
 	return E;
 }
 
 
-template<class T>
+template<typename T>
 void Graph<T>::add_edge(const T& e, int v1, int v2)
 {
 	_validate_index(v1);
@@ -44,7 +44,7 @@ void Graph<T>::add_edge(const T& e, int v1, int v2)
 }
 
 
-template<class T>
+template<typename T>
 int Graph<T>::degree(int v)
 {
 	_validate_index(v);
@@ -60,7 +60,7 @@ int Graph<T>::degree(int v)
 }
 
 
-template<class T>
+template<typename T>
 T Graph<T>::get_edge(int v1, int v2)
 {
 	_validate_index(v1);
@@ -69,7 +69,7 @@ T Graph<T>::get_edge(int v1, int v2)
 }
 
 
-template<class T>
+template<typename T>
 void Graph<T>::delete_edge(int v1, int v2)
 {
 	if (adj[v1][v2] == NULL_VALUE || adj[v2][v1] == NULL_VALUE)
@@ -87,7 +87,7 @@ void Graph<T>::delete_edge(int v1, int v2)
 }
 
 
-template<class T>
+template<typename T>
 void Graph<T>::replace_edge(T new_edge, int v1, int v2)
 {
 	if (adj[v1][v2] == NULL_VALUE || adj[v2][v1] == NULL_VALUE)
@@ -108,7 +108,7 @@ void Graph<T>::replace_edge(T new_edge, int v1, int v2)
 }
 
 
-template<class T>
+template<typename T>
 void Graph<T>::print()
 {
 	for (int i = 0; i < V; i++)
@@ -123,7 +123,7 @@ void Graph<T>::print()
 }
 
 
-template<class T>
+template<typename T>
 std::vector<int> Graph<T>::get_neighbours(int v)
 {
 	std::vector<int> neighbours;
@@ -138,7 +138,7 @@ std::vector<int> Graph<T>::get_neighbours(int v)
 }
 
 
-template<class T>
+template<typename T>
 void Graph<T>::_validate_index(int index)
 {
 	if (index < 0 || index >= V)
@@ -149,7 +149,7 @@ void Graph<T>::_validate_index(int index)
 }
 
 
-template<class T>
+template<typename T>
 Graph<T> Graph<T>::clone()
 {
 	Graph<T> g(this->get_V());
@@ -163,7 +163,7 @@ Graph<T> Graph<T>::clone()
 	return g;
 }
 
-template<class T>
+template<typename T>
 Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 {
 	Graph<T> g(positions.size());
@@ -183,21 +183,21 @@ Graph<T> Graph<T>::subgraph(std::vector<int> positions)
 	return g;
 }
 
-template<class T>
+template<typename T>
 Graph<T> Graph<T>::get_connected_component(int v)
 {
 	//return subgraph(DFS(this, v));
 	return subgraph(BFS(this, v));
 }
 
-template<class T>
+template<typename T>
 T** Graph<T>::get_adjacency_matrix()
 {
 	return adj;
 }
 
 
-template<class T>
+template<typename T>
 std::vector<std::pair<int, int>> Graph<T>::find_bridges()
 {
 	int visited[get_V()];
@@ -216,7 +216,7 @@ std::vector<std::pair<int, int>> Graph<T>::find_bridges()
 
 
 // http://csengerg.github.io/2015/12/26/pre-order-travelsal-and-tarjans-algorithm.html
-template<class T>
+template<typename T>
 void Graph<T>::_dfs_2(int v, int parent, int* id, int* pre, int* l, std::vector<std::pair<int, int>>* bridges)
 {
 	pre[v] = (*id)++;

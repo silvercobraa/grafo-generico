@@ -26,7 +26,7 @@
  * Clase que representa un grafo no dirigido con cantidad de nodos fija,
  * implementado con matriz de adyacencia.
  */
-template <class T>
+template <typename T>
 class Graph
 {
 private:
