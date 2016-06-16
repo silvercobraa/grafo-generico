@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <complex>
 #include "Graph.h"
 #include "Edge.h"
@@ -12,18 +13,19 @@ int main(int argc, char const* argv[])
 	int i = 0;
 	int j = 0;
 	type_t admitance;
+	std::ifstream list("List.txt");
 
-	std::cin >> matrix_size;
-	std::cin >> edges;
+	list >> matrix_size;
+	list >> edges;
 
 	Graph<type_t> original_graph(matrix_size);
 	original_graph.print();
 
 	for (int k = 0; k < edges; k++)
 	{
-		std::cin >> i;
-		std::cin >> j;
-		std::cin >> admitance;
+		list >> i;
+		list >> j;
+		list >> admitance;
 		original_graph.add_edge(-admitance, i, j); // Se guardan con signo opuesto
 		// DESCOMENTAR LA SIGUIENTE LINEA PARA DEBUGUEO FACIL
 		// original_graph.add_edge(-std::complex<float>(i,j), i, j);
