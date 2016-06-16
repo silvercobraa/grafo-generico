@@ -234,7 +234,7 @@ void Graph<T>::_dfs_2(int v, int parent, int* id, int* pre, int* l, std::vector<
 
 			if (l[w] == pre[w]) //for w our statement is true, so we found a bridge
 			{
-				std::cout << "Edge " << v << " " << w << " is bridge!" << std::endl;
+				std::cout << "La arista " << v << " " << w << " es un puente!" << std::endl;
 				bridges->push_back(std::pair<int,int>(v, w));
 			}
 		}
