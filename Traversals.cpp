@@ -11,7 +11,7 @@ void _visit_neighbours(Graph<T>* g, int v, bool* visited, std::vector<int>* visi
 		visited_vertices->push_back(v);
 	}
 	visited[v] = true;
-	std::cout << "visitando vértice " <<  v << std::endl;
+	std::cout << "visitando vértice " <<  v << "..." << std::endl;
 	std::vector<int> neighbours = g->get_neighbours(v);
 	for (int neighbour : neighbours)
 	{
@@ -59,7 +59,7 @@ std::vector<int> BFS(Graph<T>* g, int v)
 		int pop = q->front();
 		if (!visited[pop])
 		{
-			std::cout << "visitando vértice " << pop << std::endl;
+			std::cout << "visitando vértice " << pop << "..." << std::endl;
 			visited_vertices.push_back(pop);
 		}
 		q->pop();
