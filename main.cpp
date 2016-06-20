@@ -2,7 +2,7 @@
 #include <fstream>
 #include <complex>
 #include "Graph.h"
-#include "Edge.h"
+
 
 typedef std::complex<float> type_t;
 
